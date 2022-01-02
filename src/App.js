@@ -3,7 +3,7 @@ import React,{Component} from "react";
 import './App.css';
 
 import { CardList } from "./components/card-list/card-list.component";
-
+import { SearchBox} from "./components/search-box/search-box.component"
 
 
 class App extends Component{
@@ -16,6 +16,9 @@ class App extends Component{
       monsters:[],
       queryField: "",
     };
+
+    // this.handleChange = this.handleChange.bind(this);
+
 
     
   }
@@ -30,25 +33,31 @@ class App extends Component{
 
   }
 
+  handleChange = (e) => {
+    const queryValue = e.target.value;
+
+    this.setState({queryField : queryValue })
+  }
+
 
   render(){
+    const {monsters,queryField} = this.state;
+
+    const filteredAvatars = monsters.filter( monster => {
+
+      return    monster.name.toLowerCase().includes( queryField.toLowerCase() ) ;
+
+    })
+
 
     return (
 
       <div className="App">
         <h1> Avatars Rolodex</h1>
-        <input type="search"  placeholder="search avatars" onChange={ (event) => {
-          // console.log(event);
-          // console.log(event.target.value);
-          const value = event.target.value;
-                          //updater   
-          return this.setState({queryField: value});
 
-          
-
-        }}/>
+        <SearchBox placeholder= "Search avatar"  handleChange = { this.handleChange} />
         
-        <CardList   monsters = {this.state.monsters}/>
+        <CardList   monsters = { filteredAvatars }/>        
 
       </div>
       
