@@ -1,3 +1,3 @@
 # First_React_App
-Trying to practice advanced git while learning react,__practice__ they say make *perfect*
+Trying to practice and have fun with advanced git while learning react,__practice__ they say makes *perfect*
 * Having so much fun with **React**
